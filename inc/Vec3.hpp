@@ -85,6 +85,18 @@ struct Vec3{
 
             return *this;
         }
+
+        // indexing
+        float& operator[](size_t i) 
+        {
+            // return pointer to the first float in the struct
+            return (&x)[i];
+        }
+        
+        const float& operator[](size_t i) const
+        {
+            return (&x)[i];
+        }
         
         // --- Vector Length ---
         float length() const {

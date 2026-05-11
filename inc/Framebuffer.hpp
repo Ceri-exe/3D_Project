@@ -4,9 +4,10 @@
 #include <string>
 #include <fstream>
 #include "Vec3.hpp"
+#include <cstdint>
 
 struct Color {
-    unsigned char r,g,b; // 0-255
+    std::uint8_t r,g,b, pad; // 0-255
 };
 
 class Framebuffer {

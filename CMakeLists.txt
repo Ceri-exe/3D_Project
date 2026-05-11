@@ -13,6 +13,10 @@ add_library(Rasterizer
 # Add include dir.
 target_include_directories(Rasterizer PUBLIC inc)
 
+find_package(X11 REQUIRED)
+
+target_link_libraries(Rasterizer PUBLIC X11::X11)
+
 target_compile_features(Rasterizer PUBLIC cxx_std_23)
 
 target_compile_options(Rasterizer PRIVATE
