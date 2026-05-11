@@ -18,7 +18,7 @@ class Framebuffer {
 
         void setPixels(int x, int y, const Color& color);
 
-        void clear(const Color &color);
+        void clear(const Color &color = {0,0,0});
 
         void saveAsPPM(const std::string& filename);
 

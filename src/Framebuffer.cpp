@@ -17,7 +17,7 @@
         }
     }
 
-    void Framebuffer::clear(const Color &color = {0,0,0}) {
+    void Framebuffer::clear(const Color &color) {
         std::fill(pixels.begin(), pixels.end(), color);
     }
 

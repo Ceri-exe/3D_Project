@@ -109,7 +109,7 @@ struct Vec3{
             z /= len;
         }
 
-        Vec3 normalize() const {
+        Vec3 normalized() const {
             float len = length();
             if (len <= 1e-8f) return Vec3(0.0f);
             return *this / len;
