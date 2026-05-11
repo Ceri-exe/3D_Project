@@ -4,9 +4,10 @@
 #include <string>
 #include <fstream>
 #include "Vec3.hpp"
+#include <cstdint>
 
 struct Color {
-    unsigned char r,g,b; // 0-255
+    std::uint8_t r,g,b, pad; // 0-255
 };
 
 class Framebuffer {
@@ -18,7 +19,7 @@ class Framebuffer {
 
         void setPixels(int x, int y, const Color& color);
 
-        void clear(const Color &color);
+        void clear(const Color &color = {0,0,0});
 
         void saveAsPPM(const std::string& filename);
 

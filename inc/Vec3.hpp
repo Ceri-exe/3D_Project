@@ -85,6 +85,18 @@ struct Vec3{
 
             return *this;
         }
+
+        // indexing
+        float& operator[](size_t i) 
+        {
+            // return pointer to the first float in the struct
+            return (&x)[i];
+        }
+        
+        const float& operator[](size_t i) const
+        {
+            return (&x)[i];
+        }
         
         // --- Vector Length ---
         float length() const {
@@ -109,7 +121,7 @@ struct Vec3{
             z /= len;
         }
 
-        Vec3 normalize() const {
+        Vec3 normalized() const {
             float len = length();
             if (len <= 1e-8f) return Vec3(0.0f);
             return *this / len;
