@@ -1,8 +1,12 @@
 #include <X11/Xlib.h>
-#include <X11/Xutil.h>>
+#include <X11/Xutil.h>
 #include <iostream>
+#include <Vec3.hpp>
 
 #include "Framebuffer.hpp"
+#include "Renderer.hpp"
+
+Vec3 drawWireframeCube();
 
 int main() {
 
@@ -10,17 +14,28 @@ int main() {
     int w = 800;
     int h = 600;
     Framebuffer fb(w, h);
+    Renderer renderer(fb);
+
+    Mat4 transform(0.0f); // Initialize to zero
+    transform[0][0] = 1.0f; transform[1][1] = 1.0f; transform[2][2] = 1.0f; transform[3][3] = 1.0f; // Identity
+    transform[2][3] = 4.0f; // Set Z translation
+
+    //Color white = {255 , 255, 255, 255};
+    Color green = {0, 255, 0, 0};
+    Color black = {0, 0, 0, 0};
 
     for (int y = 0; y < h; ++y) {
         for (int x = 0; x < w; ++x) {
-            float blue = static_cast<float>(x) / w * 255.0f;
-            float green = static_cast<float>(y) / h * 255.0f;
+            //float blue = static_cast<float>(x) / w * 255.0f;
+            //float green = static_cast<float>(y) / h * 255.0f;
             fb.setPixels
             (
                 x, y, 
                 {
-                    static_cast<unsigned char>(blue), // b
-                    static_cast<unsigned char>(green), //g
+                    //static_cast<unsigned char>(blue), // b
+                    //static_cast<unsigned char>(green), //g
+                    0,
+                    0,
                     0, // r 
                     0 // padding for xlib                    
                 }
@@ -53,7 +68,7 @@ int main() {
     // Graphics context
     GC gc = DefaultGC(display,screen);
 
-    XImage * image = XCreateImage(
+    XImage* image = XCreateImage(
         display,
         DefaultVisual(display,screen),
         24,
@@ -78,6 +93,9 @@ int main() {
                 running = false;
         }
 
+        fb.clear(black);
+        renderer.drawWireframeCube(transform, green);
+
         XPutImage(
             display,window,gc,
             image,
@@ -92,6 +110,9 @@ int main() {
     image->data = nullptr;
     XDestroyImage(image);
     XDestroyWindow(display, window);
+    XCloseDisplay(display);
+
+    std::cout << "Exiting program." <<std::endl;
 
     //fb.saveAsPPM("test_output.ppm");
     return 0;
