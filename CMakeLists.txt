@@ -8,6 +8,7 @@ project(3D_Project)
 # Create a library out of the backend code.
 add_library(Rasterizer
     src/Framebuffer.cpp
+    src/Renderer.cpp
 )
 
 # Add include dir.
