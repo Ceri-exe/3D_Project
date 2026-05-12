@@ -22,12 +22,12 @@ struct Mat3
     // --- Matrix Elements ---
     float* operator[](size_t row)
     {
-        return &m[row * 4];
+        return &m[row * 3];
     }
 
     const float* operator[](size_t row) const
     {
-        return &m[row * 4];
+        return &m[row * 3];
     }
 
     // --- Matrix operations ---
@@ -50,7 +50,7 @@ struct Mat3
         );
     }
 
-    friend std::ostream& operator << (std::ostream& os, const Mat4& m) 
+    friend std::ostream& operator << (std::ostream& os, const Mat3& m) 
     {
         for (size_t row = 0; row < 3; row++) {
             for (size_t col = 0; col < 3; col++) {
