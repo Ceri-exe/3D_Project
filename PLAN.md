@@ -1,9 +1,11 @@
+
+
 • Step 1: Linear Algebra
 	- Task: Implement Vecs and Matrix
 		○ Features: Dot product, Cross product and normalization.
 		○ Matrix Multiplication -> Matrix x Matrix, Matrix x Vector.
 
-• Step 2: Transformation Pipeline
+• Step 2: Transformation Pipeline (Current Work in Progress)
 
  Translate a point from 3D-Space to 2d Screen.
 
